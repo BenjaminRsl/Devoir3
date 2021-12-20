@@ -1,10 +1,22 @@
 Fenetre1 = Tk()
-
 c=10
+i=0
+
 flag=0
 dico_etat = {} #dictionnaire contenant le nombre de cellules vivantes autour de chaque cellule
 dico_case = {} #dictionnaire contenant les coordonnées de chaques cellules et une valeur 0 ou 1 si elles sont respectivement mortes ou vivantes
 
+
+def initialiser(taille):
+    i=0
+    while i!= taille/c: #assigne une valeur 0(morte) a chaque coordonnées(cellules) (valeur par défault en quelque sorte ^^)
+        j=0
+        while j!= taille/c:
+            x=i*c
+            y=j*c
+            dico_case[x,y]=0
+            j+=1
+        i+=1
 
 class ScaleDemo( Frame ):
     """Demonstrate Canvas and Scale"""
@@ -37,9 +49,10 @@ class ScaleDemo( Frame ):
         self.display.create_rectangle(x, y, x+c, y+c, fill='white')
         dico_case[x,y]=0
 
-    def damier(self,taille): #fonction dessinant le tableau
+    def damier(self,taille): 
         self.ligne_vert(taille)
         self.ligne_hor(taille)
+        initialiser(taille)
         
     def ligne_vert(self,taille):
         c_x = 0
@@ -51,13 +64,19 @@ class ScaleDemo( Frame ):
         while c_y != taille:
             self.display.create_line(0,c_y,taille,c_y,width=1,fill='black')
             c_y+=c
+
+
     def updatedamier ( self, scaleValue ):
-        val = int( scaleValue )* 10
+        #global taille
+        taille = int( scaleValue )* 10
         self.display.delete("all")
-        self.damier(val)
+        self.damier(taille)
 
 b1 = Button(Fenetre1, text ='Quitter!')
+b2 = Button(Fenetre1, text ='Lancer!')
 b1.pack()
+b2.pack()
+
 
 
 ScaleDemo().mainloop()
