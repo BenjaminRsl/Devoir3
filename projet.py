@@ -3,7 +3,36 @@ import random
 import math
 import copy
 
+
+#les différentes variables:
+
+coeff=c*taille
+
+#taille des cellules
+c = 25
+
+
+# taille de la grille
+
+taille = 25
+
+# pourcentage d'occupation
+
+pourcentage=0
+
+#vitesse de l'animation (en réalité c'est l'attente entre chaque étapes en ms)
+vitesse=50
+
+
+flag=0
+
+M = {}
+N={}
+
+
+
 fen1 = Tk()
+
 
 
 def printer():
@@ -75,7 +104,7 @@ def updatedamier ():
     vitesse=int(s3.get())
     taille=int( s1.get() )
     pourcentage = int(s2.get())/100
-    c=math.floor(85*10/taille)
+    c=math.floor(coeff/taille)
     can1.delete("all")
     damier()
     initialiser()
@@ -145,30 +174,7 @@ def afficher(): #fonction redessinant le tableau à partir de dico_etat
         i+=1
         
     
-#les différentes variables:
 
-
-
-#taille des cellules
-c = 28
-
-
-# taille de la grille
-
-taille = 30
-
-# pourcentage d'occupation
-
-pourcentage=0
-
-#vitesse de l'animation (en réalité c'est l'attente entre chaque étapes en ms)
-vitesse=50
-
-
-flag=0
-
-M = {}
-N={}
 
 
 initialiser();
