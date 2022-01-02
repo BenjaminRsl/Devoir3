@@ -6,8 +6,6 @@ import copy
 
 #les différentes variables:
 
-coeff=c*taille
-
 #taille des cellules
 c = 25
 
@@ -23,15 +21,13 @@ pourcentage=0
 #vitesse de l'animation (en réalité c'est l'attente entre chaque étapes en ms)
 vitesse=50
 
+coeff=c*taille
+
 
 flag=0
 
 M = {}
 N={}
-
-
-
-fen1 = Tk()
 
 
 
@@ -173,41 +169,49 @@ def afficher(): #fonction redessinant le tableau à partir de dico_etat
             j+=1
         i+=1
         
-    
-
-
 
 initialiser();
 
-can1 = Canvas(fen1, bg ='white')
+
+fen1 = Tk()
+fen1.title( "Devoir 3" )
+fen1.geometry( "800x630" )
+
+frame1 = Frame(fen1)
+frame2 = Frame(fen1)
+
+
+frame1.pack(side=LEFT,fill=BOTH, expand=True)
+frame2.pack(fill=Y, expand=True)
+
+can1 = Canvas(frame1, bg ='white')
 can1.bind("<Button-1>", click_gauche)
 can1.bind("<Button-3>", click_droit)
 can1.pack( expand = YES, fill = BOTH )
-can1.master.title( "Scale" )
-can1.master.geometry( "1010x850" )
+
 
 damier()
 
 
-b1 = Button(fen1, text ='Lancer', relief=RAISED,width=20,height=2, fg="dodger blue", command =go)
-b2 = Button(fen1, text ='Stoper',relief=RAISED,width=20,height=2,fg="dodger blue", command =stop)
-b3 = Button(fen1, text ='Initialiser',relief=RAISED,width=20,height=2,fg="dodger blue", command =updatedamier)
-b4 = Button(fen1, text ='Quitter',relief=RAISED,width=20,height=2,fg="dodger blue", command =fen1.destroy)
+b1 = Button(frame2, text ='Lancer', relief=RAISED,width=20,height=2, fg="dodger blue", command =go)
+b2 = Button(frame2, text ='Stoper',relief=RAISED,width=20,height=2,fg="dodger blue", command =stop)
+b3 = Button(frame2, text ='Initialiser',relief=RAISED,width=20,height=2,fg="dodger blue", command =updatedamier)
+b4 = Button(frame2, text ='Quitter',relief=RAISED,width=20,height=2,fg="dodger blue", command =fen1.destroy)
 
-s1=Scale( fen1, from_ = 5, to =85, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150,label='Taille (en nombre de case)' )
-s2=Scale( fen1, from_ = 0, to =80, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150,label='Nombre de cellule (en %)' )
-s3=Scale( fen1, from_ = 400, to =2000, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150, label='Fréquence (en ms)' )
-
-
-b4.place(x=855, y=0)
-s1.place(x=855, y=100)
-s2.place(x=855, y=170)
-s3.place(x=855, y=240)
-
-b1.place(x=855, y=780)
-b2.place(x=855, y=740)
-b3.place(x=855, y=700)
+s1=Scale( frame2, from_ = 5, to =85, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150,label='Taille (en nombre de case)' )
+s2=Scale( frame2, from_ = 0, to =80, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150,label='Nombre de cellule (en %)' )
+s3=Scale( frame2, from_ = 400, to =2000, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150, label='Fréquence (en ms)' )
 
 
+
+b1.pack(side=TOP)
+b2.pack(side=TOP)
+b3.pack(side=TOP)
+
+s1.pack(padx=5,pady=5)
+s2.pack(padx=5,pady=5)
+s3.pack(padx=5,pady=5)
+
+b4.pack(side=BOTTOM)
 
 fen1.mainloop()
