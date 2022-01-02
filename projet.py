@@ -94,7 +94,7 @@ def click_droit(event):
 def updatedamier ():
     global taille,pourcentage, vitesse
     global c
-    vitesse=int(s3.get())
+    vitesse=math.floor(1000/(s3.get()))
     taille=int( s1.get() )
     pourcentage = int(s2.get())/100
     c=math.floor(coeff/taille)
@@ -209,7 +209,7 @@ b4 = Button(frame2, text ='Quitter',relief=RAISED,width=20,height=2,fg="dodger b
 #création des échelles
 s1=Scale( frame2, from_ = 5, to =85, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150,label='Taille (en nombre de case)' )
 s2=Scale( frame2, from_ = 0, to =80, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150,label='Nombre de cellule (en %)' )
-s3=Scale( frame2, from_ = 400, to =2000, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150, label='Fréquence (en ms)' )
+s3=Scale( frame2, from_ = 0.4, to =3.0, resolution=0.2,variable=DoubleVar, orient = HORIZONTAL,relief=RAISED,fg="dodger blue",length=150, label='Générations / seconde)' )
 
 
 #placement des éléments
